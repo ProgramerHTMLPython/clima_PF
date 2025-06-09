@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulador de Clima</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #1E4963, #092d4a);
+    }
+
+    .contenedor {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 25px 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    #resultado {
+      margin: 15px 0;
+      white-space: pre-line;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    button {
+      background-color: #0b6fa4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 10px 5px 0 5px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #095984;
+    }
+  </style>
+</head>
+<body>
+
+<div class="contenedor">
+  <h1>Simulador de Clima</h1>
+  <div id="resultado">Presiona el botón para generar un clima aleatorio.</div>
+  <button onclick="generarClima()">Generar clima</button>
+</div>
+
+<script>
+function generarClima() {
+  const temperatura = Math.floor(Math.random() * 46) - 9;
+  const nubosidad = Math.floor(Math.random() * 101);
+  const densidad = Math.floor(Math.random() * 101);
+  const lluvia = Math.floor(Math.random() * 101);
+  const nieve = Math.floor(Math.random() * 101);
+  let resultado = `Temperatura: ${temperatura} °C\n`;
+  resultado += `Nubosidad: ${nubosidad}%\n`;
+  resultado += `Densidad de nubes: ${densidad}%\n`;
+
+  if (temperatura >= 5 && nubosidad >= 80 && densidad >= 70) {
+    resultado += `Lluvia: ${lluvia}%\nClima: Lluvioso y nublado`;
+  } else if (temperatura >= -2 && temperatura < 5 && nubosidad >= 80 && densidad >= 70) {
+    if (Math.random() < 0.5) {
+      resultado += `Nieve: ${nieve}%\nClima: Nublado y frío con nieve`;
+    } else {
+      resultado += `Lluvia: ${lluvia}%\nClima: Nublado y frío con aguanieve`;
+    }
+  } else {
+    if (nubosidad <= 20 && densidad <= 20) {
+      resultado += "Clima: Despejado";
+    } else if (nubosidad <= 40 && densidad <= 40) {
+      resultado += "Clima: Parcialmente despejado";
+    } else if (nubosidad <= 70 && densidad <= 70) {
+      resultado += "Clima: Parcialmente nublado";
+    } else if (nubosidad > 70 && densidad > 70) {
+      resultado += "Clima: Nublado";
+    } else {
+      resultado += "Clima: Sin precipitación clara";
+    }
+  }
+
+  document.getElementById('resultado').textContent = resultado;
+}
+</script>
+
+</body>
+</html>
