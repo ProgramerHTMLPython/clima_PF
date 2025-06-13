@@ -88,9 +88,10 @@ function generarClima() {
   } else if (temperatura >= -2 && temperatura < 5 && nubosidad >= 80 && densidad >= 70) {
     if (Math.random() < 0.5) {
       resultado += `Nieve: ${nieve}%\nClima: Nublado y frío con nieve`;
-    } else {
-      resultado += `Lluvia: ${lluvia}%\nClima: Nublado y frío con aguanieve`;
-    }
+} else {
+  resultado += `Lluvia: ${lluvia}%\nNieve: ${nieve}%\nClima: Nublado y frío con aguanieve`;
+}
+    
   } else {
     if (nubosidad <= 20 && densidad <= 20) {
       resultado += "Clima: Despejado";
